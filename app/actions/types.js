@@ -1,1 +1,3 @@
-export const FILTER = 'FILTER';
+export const PROGRESS_TURN = 'PROGRESS_TURN';
+export const CREATE_CHARACTER = 'CREATE_CHARACTER';
+export const ADD_TO_ENCOUNTER = 'ADD_TO_ENCOUNTER';

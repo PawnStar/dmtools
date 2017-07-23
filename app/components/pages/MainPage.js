@@ -1,8 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import CharacterList from '../containers/CharacterList';
+import CharacterDetails from '../containers/CharacterDetailsPane';
+import Debug from '../elements/Debug';
 
 const MainPage = () =>
     <div>
-      <h1>Stuff goes here</h1>
+      <CharacterList/>
+      <Debug/>
     </div>;
 
 export default MainPage;
