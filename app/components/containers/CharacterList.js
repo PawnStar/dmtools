@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import CharacterListItem from '../elements/CharacterListItem';
+import { initiativeList } from '../../styles/initiativeList.scss';
 
 //React presentational component
 const CharacterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone}) => {
@@ -26,7 +27,7 @@ const CharacterList = ({characters, encounter, currentTurn, currentSelected, sel
   });
 
   return (
-    <div>
+    <div className={initiativeList}>
       {encounterList}
     </div>
   );

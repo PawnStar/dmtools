@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { currentCharacter } from '../../styles/initiativeList.scss';
+
 const CharacterListItem = ({character, current, selected, onClick}) => {
   return (
-    <div>
+    <div className={current ? currentCharacter : ''}>
       {character.name}
     </div>
   );
