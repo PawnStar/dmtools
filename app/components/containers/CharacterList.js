@@ -7,16 +7,7 @@ import { initiativeList } from '../../styles/initiativeList.scss';
 
 //React presentational component
 const CharacterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone}) => {
-  const encounterList = encounter.filter(id=>characters[id]).map(id=>characters[id]).sort((a,b)=>{
-    //TODO: add sort order feature, for manual sorting
-    if(a.initiative !== b.initiative)
-      return a.initiative - b.initiative;
-
-    if(a.stats.dex !== b.stats.dex)
-      return a.stats.dex - b.stats.dex;
-
-    return a.id - b.id;
-  }).map(character=>{
+  const encounterList = encounter.filter(id=>characters[id]).map(id=>characters[id]).map(character=>{
     return (<CharacterListItem
       key={character.id}
       character={character}
