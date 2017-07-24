@@ -1,13 +1,20 @@
 import * as types from './types';
 
-let nextID = 0;
+function createNewId(characters) {
+  const id = Math.random().toString(36).slice(2);
+  if(characters[id]) return createNewId(characters);
+  return id;
+}
+
 export function createCharacter(character) {
-  return {
-    type: types.CREATE_CHARACTER,
-    character: {
-      id: nextID++,
-      ...character
-    }
+  return (dispatch, getState) => {
+    return dispatch({
+      type: types.CREATE_CHARACTER,
+      character: {
+        id: createNewId(getState().characters),
+        ...character
+      }
+    });
   };
 }
 
@@ -25,19 +32,15 @@ export function addToEncounter(characterID) {
           return a.stats.dex - b.stats.dex;
 
         return a.id - b.id;
-      }).map(character=>character.id)
+      }).map(character=>character.id);
 
     return dispatch({
       type: types.ALTER_ENCOUNTER_LIST,
       list: moddedList
     });
-  }
+  };
 }
 
-
-const getNextInEncounter = (getState) => {
-
-};
 export function progressTurn() {
   return (dispatch, getState) => {
     const state = getState();
@@ -48,5 +51,12 @@ export function progressTurn() {
       type: types.PROGRESS_TURN,
       next: state.encounter.list[nextIndex]
     });
+  };
+}
+
+export function selectCharacter(id) {
+  return {
+    type: types.SELECT_CHARACTER,
+    id
   };
 }

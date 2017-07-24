@@ -2,7 +2,7 @@ import * as types from '../../actions/types';
 
 const defaultState = {
   list: [],
-  current: 0
+  current: ''
 };
 
 const currentTurn = (state = defaultState, action) => {

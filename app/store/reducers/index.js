@@ -3,10 +3,12 @@ import { combineReducers } from 'redux';
 
 import encounter from './encounter';
 import characters from './characters';
+import selectedCharacter from './selectedCharacter';
 
 const rootReducer = combineReducers({
   characters,
   encounter,
+  selectedCharacter,
   routing
 });
 

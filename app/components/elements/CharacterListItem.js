@@ -4,16 +4,26 @@ import PropTypes from 'prop-types';
 import { currentCharacter } from '../../styles/initiativeList.scss';
 
 const CharacterListItem = ({character, current, selected, onClick}) => {
+  const styleClass = (() => {
+    if(current && selected)
+      return currentCharacter + ' selected';
+    if(current)
+      return currentCharacter;
+    if(selected)
+      return 'selected';
+    return '';
+  })();
+
   return (
-    <div className={current ? currentCharacter : ''}>
-      {character.name}
+    <div onClick={onClick} className={styleClass}>
+      ({character.initiative}) {character.name}
     </div>
   );
 };
 
 CharacterListItem.propTypes = {
   character: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     stats: PropTypes.objectOf(PropTypes.number),
     savingThrows: PropTypes.objectOf(PropTypes.number),

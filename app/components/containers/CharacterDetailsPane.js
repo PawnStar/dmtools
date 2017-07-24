@@ -1,2 +1,5 @@
+const CharacterDetailsPane = () => {
+  return null;
+};
 
-module.exports = {};
+export default CharacterDetailsPane;

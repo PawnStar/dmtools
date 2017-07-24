@@ -9,7 +9,7 @@ export const history = createHistory();
 const routerMiddleware = createRouterMiddleware(history);
 
 const getMiddleware = ()=>{
-  const middleware = applyMiddleware(routerMiddleware, thunk)
+  const middleware = applyMiddleware(routerMiddleware, thunk);
 
   if (process.env.NODE_ENV === 'development') return compose( middleware, DevTools.instrument() );
   return applyMiddleware(middleware, thunk);

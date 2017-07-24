@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import CharacterList from '../containers/CharacterList';
 import CharacterDetails from '../containers/CharacterDetailsPane';
@@ -11,6 +10,7 @@ const MainPage = () =>
     <div>
       <CharacterList/>
       <div className={selectedCharacter}>
+        <CharacterDetails />
         <Debug/>
       </div>
     </div>;

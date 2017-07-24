@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import CharacterListItem from '../elements/CharacterListItem';
 import { initiativeList } from '../../styles/initiativeList.scss';
+import { selectCharacter } from '../../actions';
 
 //React presentational component
 const CharacterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone}) => {
@@ -25,12 +26,12 @@ const CharacterList = ({characters, encounter, currentTurn, currentSelected, sel
 };
 
 CharacterList.propTypes = {
-  encounter: PropTypes.arrayOf(PropTypes.number).isRequired,
-  currentTurn: PropTypes.number.isRequired,
-  currentSelected: PropTypes.number,
+  encounter: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentTurn: PropTypes.string.isRequired,
+  currentSelected: PropTypes.string,
   selectSomeone: PropTypes.func.isRequired,
   characters: PropTypes.objectOf(PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     stats: PropTypes.objectOf(PropTypes.number),
     savingThrows: PropTypes.objectOf(PropTypes.number),
@@ -49,9 +50,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    selectSomeone: (id)=>{console.log('selecting ' + id);}
+    selectSomeone: (id)=>dispatch(selectCharacter(id))
   };
 };
 
