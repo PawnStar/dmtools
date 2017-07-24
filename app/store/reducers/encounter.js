@@ -12,13 +12,9 @@ const currentTurn = (state = defaultState, action) => {
         list: state.list,
         current: action.next
       };
-    case types.ADD_TO_ENCOUNTER:
+    case types.ALTER_ENCOUNTER_LIST:
       return {
-        list: [
-          ...state.list.slice(0,action.index),
-          action.id,
-          ...state.list.slice(action.index)
-        ],
+        list: action.list,
         current: state.current
       };
     default:

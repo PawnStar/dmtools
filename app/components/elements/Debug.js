@@ -9,8 +9,8 @@ const DebugButtons = ({
   moveTurn
 }) => (
   <div>
-    <a href="#" onClick={addCharacter}>Add Character</a>
-    <a href="#" onClick={moveTurn}>Progress Turn</a>
+    <button onClick={addCharacter}>Add Character</button>
+    <button onClick={moveTurn}>Progress Turn</button>
   </div>
 );
 
