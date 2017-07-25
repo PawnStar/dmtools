@@ -1,18 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Icon from './icon';
 import profileImage from '../../images/user.png';
-
-const StatIcon = ({icon, children}) => (
-  <span className="CharacterListStat">
-    <span className={'fa fa-' + icon}/>{children}
-  </span>
-);
-
-StatIcon.propTypes = {
-  icon: PropTypes.string.isRequired,
-  children: PropTypes.object
-}
 
 const CharacterListItem = ({character, current, selected, onClick}) => {
   const styleClass = (() => {
@@ -31,8 +21,8 @@ const CharacterListItem = ({character, current, selected, onClick}) => {
       <span className="CharacterListInit">{character.initiative}</span>
       <span className="CharacterListName">{character.name}</span>
       <div className="CharacterListStats">
-        <StatIcon icon="shield">{character.armorClass}</StatIcon>
-        <StatIcon icon="eye">{character.passivePerception}</StatIcon>
+        <Icon icon="shield">{character.armorClass}</Icon>
+        <Icon icon="eye">{character.passivePerception}</Icon>
       </div>
     </div>
   );

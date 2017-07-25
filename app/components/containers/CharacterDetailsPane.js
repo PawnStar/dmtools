@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import {selectCharacter} from '../../actions';
 
-const CharacterDetailsPane = ({character}) => {
+import Icon from '../elements/Icon';
+
+const CharacterDetailsPane = ({character, close}) => {
+  const root = window.__webpack_public_path__;
+
   return (
     <div className="SelectedCharacterPane">
       {/*TODO: A better empty state (CUUUTE)*/}
@@ -10,6 +16,10 @@ const CharacterDetailsPane = ({character}) => {
       {/*Wrap for empty state*/}
       {character ? (
         <div>
+          <div className="CharacterPaneMenu">
+            <Link to={root + 'edit/' + character.id}><Icon icon="pencil"/></Link>
+            <a href="#" onClick={(ev)=>{ev.preventDefault(); close()}}><Icon icon="close"/></a>
+          </div>
           <h2>{character.name}</h2>
           <p>Stats go here</p>
         </div>
@@ -26,7 +36,8 @@ CharacterDetailsPane.propTypes = {
     savingThrows: PropTypes.objectOf(PropTypes.number),
     armorClass: PropTypes.number,
     initiative: PropTypes.number
-  })
+  }),
+  close: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -35,7 +46,12 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = dispatch=> {
+  return {
+    close: ()=>dispatch(selectCharacter('')),
+    edit: ()=>dispatch()
+  };
+};
 
 const WrappedNode = connect(
   mapStateToProps,
