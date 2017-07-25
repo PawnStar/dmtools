@@ -4,12 +4,14 @@ import MainPage from './pages/MainPage';
 import Settings from './pages/Settings';
 import Titlebar from './common/Titlebar';
 
+const root = window.__webpack_public_path__;
+
 export default (
 	<div>
 		<Titlebar/>
 		<Switch>
-			<Route exact path="/" component={MainPage} />
-			<Route path="/settings" component={Settings} />
+			<Route exact path={root} component={MainPage} />
+			<Route path={root + 'settings'} component={Settings} />
 		</Switch>
 	</div>
 );
