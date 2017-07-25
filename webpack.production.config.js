@@ -7,6 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var StatsPlugin = require('stats-webpack-plugin');
 
 module.exports = {
+    devtool: 'source-map',
     // The entry file. All your app roots from here.
     entry: [
         // Polyfills go here too, like babel-polyfill or whatwg-fetch
