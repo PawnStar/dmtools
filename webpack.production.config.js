@@ -15,7 +15,7 @@ module.exports = {
     ],
     // Where you want the output to go
     output: {
-        path: path.join(__dirname, '/dist/'),
+        path: path.join(__dirname, '/docs/'),
         filename: '[name]-[hash].min.js',
         publicPath: '/'
     },
@@ -80,10 +80,13 @@ module.exports = {
             test: /\.json?$/,
             loader: 'json'
         }, {
-            test: /\.scss$/,
+            test: /\.less$/,
             // we extract the styles into their own .css file instead of having
             // them inside the js.
-            loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!sass')
+            loaders: [ 'style', 'css', 'less' ]
+        }, {
+          test: /\.png$/,
+          loaders: [ 'file-loader', 'img-loader' ]
         }, {
             test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
             loader: 'url?limit=10000&mimetype=application/font-woff'
