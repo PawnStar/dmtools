@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "nodejs"
+
+install:
+  - npm install
+
+script:
+  - npm run build
+
+deploy:
+  - skip_cleanup: true
