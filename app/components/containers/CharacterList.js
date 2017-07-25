@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import CharacterListItem from '../elements/CharacterListItem';
+import Debug from '../elements/Debug';
 import { selectCharacter } from '../../actions';
 import '../../styles/initiativeList.less';
 
@@ -20,6 +21,9 @@ const CharacterList = ({characters, encounter, currentTurn, currentSelected, sel
 
   return (
     <div className="InitiativeList">
+      <div className="InitiativeListControls">
+        <Debug />
+      </div>
       {encounterList}
     </div>
   );

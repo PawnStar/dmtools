@@ -6,17 +6,18 @@
 	position:absolute;
 	top:40px;
 	bottom:0px;
-	width:200px;
+	width:250px;
 	overflow:auto;
 
-	div{
+	.InitiativeListCharacter{
 		height:45px;
 		position:relative;
+		border-bottom: solid 1px gray;
 
 		img.CharacterListImage{
 			position:absolute;
-			top:10px;
-			left:10px;
+			top:8px;
+			left:20px;
 			background:gray;
 			border:solid 1px black;
 			width:30px;
@@ -28,7 +29,7 @@
 		.CharacterListInit{
 			position:absolute;
 			top:25px;
-			left:28px;
+			left:38px;
 			background:red;
 			height:17px;
 			width:18px;
@@ -41,22 +42,20 @@
 
 		.CharacterListName{
 			position:absolute;
-			top:10px;
-			left:50px;
+			top:8px;
+			left:65px;
 		}
 
-		border-bottom: solid 1px gray;
-	}
+		&.SelectedCharacter{
+			background:white;
+			border-right:none;
+		}
 
-	div:first-child{
-	}
-
-	.CurrentCharacter{
-
-	}
-
-	.SelectedCharacter{
-		background:white;
-		border-right:none!important;
+		&.CurrentCharacter::before{
+			content: '>';
+			position:absolute;
+			top:14px;
+			left:5px;
+		}
 	}
 }

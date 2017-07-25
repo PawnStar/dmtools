@@ -6,12 +6,12 @@ import profileImage from '../../images/user.png';
 const CharacterListItem = ({character, current, selected, onClick}) => {
   const styleClass = (() => {
     if(current && selected)
-      return 'CurrentCharacter' + ' ' + 'SelectedCharacter';
+      return 'InitiativeListCharacter CurrentCharacter SelectedCharacter';
     if(current)
-      return 'CurrentCharacter';
+      return 'InitiativeListCharacter CurrentCharacter';
     if(selected)
-      return 'SelectedCharacter';
-    return '';
+      return 'InitiativeListCharacter SelectedCharacter';
+    return 'InitiativeListCharacter';
   })();
 
   return (
