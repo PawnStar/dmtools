@@ -16,6 +16,11 @@ const MainPage = () =>
             This will be where all your character templates are, but right
             now it only adds them randomly.
           </p>
+          <p>
+            To test out the (limited) functionality I&#39;ve put in so far,
+            click the &ldquo;Add Character&rdquo; button a few times, followed by the
+            &ldquo;Progress Turn&rdquo; button to move through the round.
+          </p>
         </div>
       </div>
     </div>;
