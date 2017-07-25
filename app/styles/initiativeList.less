@@ -14,6 +14,24 @@
 		position:relative;
 		border-bottom: solid 1px gray;
 
+		&.SelectedCharacter{
+			background:white;
+			border-right:none;
+		}
+
+		&.CurrentCharacter{
+			background:#c2ffc3;
+			&.SelectedCharacter{
+				background:linear-gradient(90deg, #c2ffc3 80%, white);
+			}
+			&::before{
+				content: '>';
+				position:absolute;
+				top:14px;
+				left:5px;
+			}
+		}
+
 		img.CharacterListImage{
 			position:absolute;
 			top:8px;
@@ -46,16 +64,22 @@
 			left:65px;
 		}
 
-		&.SelectedCharacter{
-			background:white;
-			border-right:none;
+		.CharacterListStats{
+			position:absolute;
+			top:0;
+			right:10px;
+			width:100px;
+
+			& > .CharacterListStat{
+				display:inline-block;
+				width:50%;
+			}
 		}
 
-		&.CurrentCharacter::before{
-			content: '>';
+		.CharacterListAC{
 			position:absolute;
-			top:14px;
-			left:5px;
+			top:8px;
+			right:10px;
 		}
 	}
 }

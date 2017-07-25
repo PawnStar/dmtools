@@ -112,7 +112,9 @@ const mapDispatchToProps = dispatch => {
         initiative: 2 + abilityScores.dex + d(20),
         name: selectName(),
         stats: stats,
-        savingThrows: abilityScores
+        savingThrows: abilityScores,
+        armorClass: abilityScores.dex + 11,
+        passivePerception: abilityScores.wis + 10
       }));
       dispatch(addToEncounter(res.character.id));
     },

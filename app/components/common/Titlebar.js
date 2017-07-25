@@ -11,7 +11,7 @@ const Titlebar = () =>{
         <Link to={root + 'settings'}>Settings</Link>
     </div>
   );
-}
+};
 
 
 export default Titlebar;
