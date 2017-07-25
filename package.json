@@ -10,7 +10,6 @@
     "eslint": "eslint ."
   },
   "dependencies": {
-    "file-loader": "^0.9.0",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "prop-types": "^15.5.9",
@@ -37,7 +36,9 @@
     "eslint-loader": "^1.5.0",
     "eslint-plugin-react": "^5.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.16.1",
+    "img-loader": "^2.0.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.7.0",
     "postcss-loader": "^0.9.1",
