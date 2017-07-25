@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { currentCharacter } from '../../styles/initiativeList.scss';
-
 const CharacterListItem = ({character, current, selected, onClick}) => {
   const styleClass = (() => {
     if(current && selected)
-      return currentCharacter + ' selected';
+      return 'CurrentCharacter' + ' ' + 'SelectedCharacter';
     if(current)
-      return currentCharacter;
+      return 'CurrentCharacter';
     if(selected)
-      return 'selected';
+      return 'SelectedCharacter';
     return '';
   })();
 
   return (
     <div onClick={onClick} className={styleClass}>
-      ({character.initiative}) {character.name}
+      <img className="CharacterListImage" src="/person.gif"/>
+      <span className="CharacterListInit">{character.initiative}</span>
+      <span className="CharacterListName">{character.name}</span>
     </div>
   );
 };

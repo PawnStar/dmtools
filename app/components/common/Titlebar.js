@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { titlebar } from '../../styles/titlebar.scss';
+import '../../styles/titlebar.less';
 
 const Titlebar = () =>(
-    <div className={titlebar}>
+    <div className="Titlebar">
         <Link to="/">DMTool</Link>
         <Link to="/settings">Settings</Link>
     </div>
