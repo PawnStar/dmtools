@@ -18,7 +18,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/docs/'),
         filename: '[name]-[hash].min.js',
-        publicPath: '/'
+        publicPath: '/dmtools/'
     },
     plugins: [
         // webpack gives your modules and chunks ids to identify them. Webpack can vary the
