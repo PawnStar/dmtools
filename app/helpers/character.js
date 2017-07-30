@@ -56,13 +56,15 @@ class Character {
 
   getSavingThrow(name){
     const char = this.char;
-    const proficient = char.proficiency.saves[name];
-    const bonus = char.proficiency.bonus;
-    const score = this.getStatMod(name);
+    const stat = char.stats[name];
 
-    if(proficient)
-      return score + bonus;
-    return bonus;
+    if(typeof char.savingThrows[name] === 'number')
+      return char.savingThrows[name];
+
+    if(typeof char.savingThrows[name] === 'boolean')
+      return getScoreFromStat(char.stats[name]) + (char.savingThrows ? char.proficiency : 0);
+
+    return getScoreFromStat(stat);
   }
 
   getStatMod(name){

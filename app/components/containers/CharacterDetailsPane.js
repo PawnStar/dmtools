@@ -7,7 +7,7 @@ import SelectedCharacterDetails from '../elements/SelectedCharacterDetails';
 
 import Icon from '../elements/Icon';
 
-const CharacterDetailsPane = ({character, close, edit, mode, save}) => {
+const CharacterDetailsPane = ({character, initiativeRoll, close, edit, mode, save}) => {
   const root = window.__webpack_public_path__;
 
   //TODO: A better empty state (CUUUTE)
@@ -21,7 +21,7 @@ const CharacterDetailsPane = ({character, close, edit, mode, save}) => {
           <a href="#" onClick={(ev)=>{ev.preventDefault(); edit(character.id);}}><Icon icon="pencil"/></a>
           <a href="#" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="close"/></a>
         </div>
-        <SelectedCharacterDetails character={character} />
+        <SelectedCharacterDetails character={{...character, initiativeRoll}} />
       </div>
     )
 
@@ -55,6 +55,7 @@ CharacterDetailsPane.propTypes = {
     armorClass: PropTypes.number,
     initiative: PropTypes.number
   }),
+  initiativeRoll: PropTypes.number,
   close: PropTypes.func.isRequired,
   edit: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired,
@@ -62,8 +63,17 @@ CharacterDetailsPane.propTypes = {
 };
 
 const mapStateToProps = state => {
+  const currentItem = state.encounter.list.reduce((running, current)=>{
+    if(current.id === state.characterPane.selectedCharacter)
+      return current;
+    return running;
+  }, undefined)
+
+  const currentInitiative = currentItem ? currentItem.initiativeRoll : 0;
+
   return {
     character: state.characters[state.characterPane.selectedCharacter],
+    initiativeRoll: currentInitiative,
     mode: state.characterPane.mode
   };
 };

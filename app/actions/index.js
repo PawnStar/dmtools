@@ -47,12 +47,16 @@ export function addToEncounter(id, initiativeRoll) {
 export function progressTurn() {
   return (dispatch, getState) => {
     const state = getState();
-    const currentIndex = state.encounter.list.indexOf(state.encounter.current);
+    const currentIndex = state.encounter.list.reduce((found, current, index)=>{
+      if(current.id === state.encounter.current)
+        return index;
+      return found;
+    }, -1)
     const nextIndex = (currentIndex + 1 === state.encounter.list.length) ? 0 : (currentIndex + 1);
 
     return dispatch({
       type: types.PROGRESS_TURN,
-      next: state.encounter.list[nextIndex]
+      next: state.encounter.list[nextIndex].id
     });
   };
 }

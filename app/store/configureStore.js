@@ -44,7 +44,7 @@ export function configureStore() {
       return;
 
     if(timeout) clearTimeout(timeout);
-    timeout = setTimeout(updateLocalStorage, 5000);
+    timeout = setTimeout(updateLocalStorage, 1000);
   };
 
   timeout = null;
