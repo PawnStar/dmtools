@@ -47,6 +47,11 @@ export function addToEncounter(id, initiativeRoll) {
 export function progressTurn() {
   return (dispatch, getState) => {
     const state = getState();
+
+    //No people
+    if(state.encounter.list.length < 1)
+      return null;
+
     const currentIndex = state.encounter.list.reduce((found, current, index)=>{
       if(current.id === state.encounter.current)
         return index;
@@ -58,6 +63,33 @@ export function progressTurn() {
       type: types.PROGRESS_TURN,
       next: state.encounter.list[nextIndex].id
     });
+  };
+}
+
+export function removeCharacterFromEncounter(id) {
+  return (dispatch, getState) => {
+    const state = getState();
+
+    const indexOfRemoved = state.encounter.list.reduce((found, current, index)=>{
+      if(current.id === id)
+        return index;
+      return found;
+    }, -1)
+
+    if(indexOfRemoved < 0)
+      return null;
+
+    const moddedList = [ ...state.encounter.list.slice(0, indexOfRemoved), ...state.encounter.list.slice(indexOfRemoved + 1)];
+
+    if(state.encounter.current === id)
+      dispatch(progressTurn())
+
+    dispatch(selectCharacter(''));
+
+    return dispatch({
+      type: types.ALTER_ENCOUNTER_LIST,
+      list: moddedList
+    })
   };
 }
 

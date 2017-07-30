@@ -8,44 +8,21 @@ import { selectCharacter } from '../../actions';
 import '../../styles/initiativeList.less';
 
 //React presentational component
-const CharacterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone}) => {
-  const encounterList = encounter.filter(item=>characters[item.id]).map(item=>{return {...item, character: characters[item.id]}}).map(item=>{
-    return (<CharacterListItem
-      key={item.id}
-      character={item.character}
-      initiativeRoll={item.initiativeRoll}
-      current={currentTurn === item.id}
-      selected={currentSelected === item.id}
-      onClick={()=>selectSomeone(item.id)}
-    />);
-  });
-
+const CharacterList = () => {
   return (
-    <div className="InitiativeList">
-      <div className="InitiativeListControls">
-        <Debug />
-      </div>
-      {encounterList}
+    <div className="CharacterBrowserPane">
+      <p>
+        This will be where all your character templates are, but right
+        now it only adds them randomly.
+      </p>
+      <p>
+        To test out the (limited) functionality I&#39;ve put in so far,
+        click the &ldquo;Add Character&rdquo; button a few times, followed by the
+        &ldquo;Progress Turn&rdquo; button to move through the round.
+      </p>
+      <Debug/>
     </div>
   );
-};
-
-CharacterList.propTypes = {
-  encounter: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    initiativeRoll: PropTypes.number.isRequired
-  })).isRequired,
-  currentTurn: PropTypes.string.isRequired,
-  currentSelected: PropTypes.string,
-  selectSomeone: PropTypes.func.isRequired,
-  characters: PropTypes.objectOf(PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    stats: PropTypes.objectOf(PropTypes.number),
-    savingThrows: PropTypes.objectOf(PropTypes.number),
-    armorClass: PropTypes.number,
-    initiative: PropTypes.number
-  })).isRequired
 };
 
 //Redux wrapper
@@ -64,9 +41,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const WrappedCharacterList = connect(
+const Wrapped = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CharacterList);
 
-export default WrappedCharacterList;
+export default CharacterList;
