@@ -3,7 +3,6 @@ import * as types from '../../actions/types';
 const defaultState = 'saved';
 
 const reducer = (state = defaultState, action) => {
-  console.log(action);
   switch (action.type) {
 
     //On Redux start, we don't need to save
@@ -20,6 +19,8 @@ const reducer = (state = defaultState, action) => {
 
     //Ignore character select
     case types.SELECT_CHARACTER:
+      return state;
+    case types.EDIT_CHARACTER:
       return state;
 
     //Everything else, we need to save

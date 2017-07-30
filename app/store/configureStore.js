@@ -37,7 +37,7 @@ export function configureStore() {
     localStorage.setItem('dmtools', state);
 
     store.dispatch(saveComplete());
-  }
+  };
 
   const stateUpdate = ()=>{
     if(store.getState().saveStatus === 'saved')
@@ -45,7 +45,7 @@ export function configureStore() {
 
     if(timeout) clearTimeout(timeout);
     timeout = setTimeout(updateLocalStorage, 5000);
-  }
+  };
 
   timeout = null;
   store.subscribe(stateUpdate);

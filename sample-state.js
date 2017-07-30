@@ -56,5 +56,9 @@
     current: id
   },
 
-  selectedCharacter: id,
+  characterPane: {
+    mode: 'editing',
+    selectedCharacter: id
+  }
+
 }

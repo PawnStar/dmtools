@@ -9,8 +9,8 @@ const Icon = ({icon, children, className}) => (
 
 Icon.propTypes = {
   icon: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
-  children: PropTypes.object
-}
+  className: PropTypes.string,
+  children: PropTypes.node
+};
 
 export default Icon;

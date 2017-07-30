@@ -9,7 +9,7 @@ function createNewId(characters) {
 export function createCharacter(character) {
   return (dispatch, getState) => {
     return dispatch({
-      type: types.CREATE_CHARACTER,
+      type: types.SAVE_CHARACTER,
       character: {
         id: createNewId(getState().characters),
         ...character
@@ -55,14 +55,41 @@ export function progressTurn() {
 }
 
 export function selectCharacter(id) {
-  return {
-    type: types.SELECT_CHARACTER,
-    id
+  return (dispatch, getState) => {
+    const state = getState();
+    const currentCharacter = state.characterPane.selectedCharacter;
+
+    if(id !== currentCharacter)
+      return dispatch({
+        type: types.SELECT_CHARACTER,
+        id
+      })
+    return null;
   };
+}
+
+export function saveCharacter(character) {
+  return (dispatch, getState) => {
+    const state = getState();
+    if(!character.id || !state.characters[character.id])
+      return dispatch(createCharacter(character));
+
+    return dispatch({
+      type: types.SAVE_CHARACTER,
+      character
+    })
+  }
+}
+
+export function editCharacter(id) {
+  return {
+    type: types.EDIT_CHARACTER,
+    id
+  }
 }
 
 export function saveComplete() {
   return {
     type: types.SAVE_COMPLETE
-  }
+  };
 }

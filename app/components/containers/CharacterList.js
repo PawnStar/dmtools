@@ -48,7 +48,7 @@ CharacterList.propTypes = {
 const mapStateToProps = state => {
   return {
     characters: state.characters,
-    currentSelected: state.selectedCharacter,
+    currentSelected: state.characterPane.selectedCharacter,
     currentTurn: state.encounter.current,
     encounter: state.encounter.list,
   };
