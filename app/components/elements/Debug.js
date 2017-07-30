@@ -5,8 +5,7 @@ import {createCharacter} from '../../actions';
 
 //React presentational component
 const DebugButtons = ({
-  addCharacter,
-  moveTurn
+  addCharacter
 }) => (
   <div>
     <button onClick={addCharacter}>Add Character</button>
@@ -14,8 +13,7 @@ const DebugButtons = ({
 );
 
 DebugButtons.propTypes = {
-  addCharacter: PropTypes.func.isRequired,
-  moveTurn: PropTypes.func.isRequired
+  addCharacter: PropTypes.func.isRequired
 };
 
 
@@ -107,7 +105,7 @@ const mapDispatchToProps = dispatch => {
         cha: computeAbilityScore(stats.cha)
       };
 
-      const res = dispatch(createCharacter({
+      dispatch(createCharacter({
         name: selectName(),
         stats: stats,
         savingThrows: {},

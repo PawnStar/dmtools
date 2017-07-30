@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 
 import CharacterListItem from '../elements/CharacterListItem';
 import EncounterControls from '../elements/EncounterControls';
-import { selectCharacter } from '../../actions';
+import { selectCharacter, removeCharacterFromEncounter } from '../../actions';
 import '../../styles/initiativeList.less';
 
 //React presentational component
-const EncounterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone}) => {
+const EncounterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone, removeSomeone}) => {
   const encounterList = encounter.filter(item=>characters[item.id]).map(item=>{return {...item, character: characters[item.id]}}).map(item=>{
     return (<CharacterListItem
       key={item.id}
@@ -16,7 +16,8 @@ const EncounterList = ({characters, encounter, currentTurn, currentSelected, sel
       initiativeRoll={item.initiativeRoll}
       current={currentTurn === item.id}
       selected={currentSelected === item.id}
-      onClick={()=>selectSomeone(item.id)}
+      selectCharacter={()=>selectSomeone(item.id)}
+      removeCharacter={()=>removeSomeone(item.id)}
     />);
   });
 
@@ -38,6 +39,7 @@ EncounterList.propTypes = {
   currentTurn: PropTypes.string.isRequired,
   currentSelected: PropTypes.string,
   selectSomeone: PropTypes.func.isRequired,
+  removeSomeone: PropTypes.func.isRequired,
   characters: PropTypes.objectOf(PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
@@ -60,7 +62,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectSomeone: (id)=>dispatch(selectCharacter(id))
+    selectSomeone: (id)=>dispatch(selectCharacter(id)),
+    removeSomeone: (id)=>dispatch(removeCharacterFromEncounter(id))
   };
 };
 

@@ -44,7 +44,7 @@ const SelectedCharacterDetails = ({character}) => {
                   <td>{char.getAbilityScore(stat)}</td>
                   <td>{char.getSavingThrow(stat)}</td>
                 </tr>
-              )
+              );
             })
           }
         </tbody>
