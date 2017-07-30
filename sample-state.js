@@ -4,53 +4,62 @@
       id: 0,
       player: true,
       generic: false,
-      name: "Lilith",
+      name: "",
       stats:{
-        dex: 12,
-        str: 10,
-        con: 11,
-        wis: 14,
-        int: 16,
-        cha: 20
+        dex: 0,
+        str: 0,
+        con: 0,
+        wis: 0,
+        int: 0,
+        cha: 0
       },
       savingThrows:{
-        dex: 1,
-        str: 0,
-        con: 1,
-        wis: 2,
-        int: 3,
-        cha: 7
+        dex: 3, //Can just be number (for monster)
+        str: true //can be a boolean (for based on proficiency)
+        //Assume ones not here are simply untrained
+      },
+      proficiency: 2,
+      skills: {
+        animalHandling: 5, //Can just be a number
+        performance: {
+          trained: 0 //0, 1, 2 (bard)
+        }
+        //Assume skills not here are merely untrained
+      },
+      feats: {
+        //jackOfAll
       }
-      proficiency: 3,
       armorClass: 20,
+      walkingSpeed: 40,
       maxHP: 40,
       curHP: 20,
-      initiativeBonus:2,
-      initiative: 18,
-      spellSave: 16,
-      //passiv perception computed
-      conditions:{
-        blinded,
-        charmed,
-        deafened,
-        frightened,
-        grappled,
-        incapacitated,
-        invisible,
-        paralyzed,
-        petrified,
-        poisoned,
-        prone,
-        restrained,
-        stunned,
-        unconscious
+      spellStat: '',
+      conditions:[
+        'blinded',
+        'charmed',
+        'deafened',
+        'frightened',
+        'grappled',
+        'incapacitated',
+        'invisible',
+        'paralyzed',
+        'petrified',
+        'poisoned',
+        'prone',
+        'restrained',
+        'stunned',
+        'unconscious'
       },
+      languages: [
+
+      ]
       exhaustionLevel: 0
     }
   },
 
   encounter:{
     list: [
+      {id: '', initiativeRoll: 10},
       //Array of character IDs
     ],
     current: id

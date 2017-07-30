@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import Icon from './Icon';
 import profileImage from '../../images/user.png';
+import Character from '../../helpers/character';
 
-const CharacterListItem = ({character, current, selected, onClick}) => {
+const CharacterListItem = ({character, initiativeRoll, current, selected, onClick}) => {
   const styleClass = (() => {
     if(current && selected)
       return 'InitiativeListCharacter CurrentCharacter SelectedCharacter';
@@ -15,14 +16,16 @@ const CharacterListItem = ({character, current, selected, onClick}) => {
     return 'InitiativeListCharacter';
   })();
 
+  const char = new Character(character);
+
   return (
     <div onClick={onClick} className={styleClass}>
       <img className="CharacterListImage" src={profileImage}/>
-      <span className="CharacterListInit">{character.initiative}</span>
+      <span className="CharacterListInit">{initiativeRoll + char.getAbilityScore('dex')}</span>
       <span className="CharacterListName">{character.name}</span>
       <div className="CharacterListStats">
         <Icon icon="shield" className="CharacterListStat">{character.armorClass}</Icon>
-        <Icon icon="eye" className="CharacterListStat">{character.passivePerception}</Icon>
+        <Icon icon="eye" className="CharacterListStat">{10 + char.getAbilityScore('perception')}</Icon>
       </div>
     </div>
   );
@@ -37,6 +40,7 @@ CharacterListItem.propTypes = {
     armorClass: PropTypes.number,
     initiative: PropTypes.number
   }).isRequired,
+  initiativeRoll: PropTypes.number.isRequired,
   current: PropTypes.bool.isRequired,
   selected: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired

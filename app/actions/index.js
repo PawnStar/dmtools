@@ -1,4 +1,5 @@
 import * as types from './types';
+import Character from '../helpers/character';
 
 function createNewId(characters) {
   const id = Math.random().toString(36).slice(2);
@@ -18,21 +19,23 @@ export function createCharacter(character) {
   };
 }
 
-export function addToEncounter(characterID) {
+export function addToEncounter(id, initiativeRoll) {
   return (dispatch, getState) => {
-    const moddedList = [ ...getState().encounter.list, characterID ]
-      .filter(id=>getState().characters[id])
-      .map(id=>getState().characters[id])
+    const moddedList = [ ...getState().encounter.list, {
+      id, initiativeRoll
+    } ]
+      .filter(item=>getState().characters[item.id])
+      .map(item=>{return {id: item.id, character: new Character(getState().characters[item.id]), roll: item.initiativeRoll}})
       .sort((b,a)=>{
         //TODO: add sort order feature, for manual sorting
-        if(a.initiative !== b.initiative)
-          return a.initiative - b.initiative;
+        if(a.character.getInitiative(a.roll) !== b.character.getInitiative(b.roll))
+          return a.character.getInitiative(a.roll) - b.character.getInitiative(b.roll);
 
-        if(a.stats.dex !== b.stats.dex)
-          return a.stats.dex - b.stats.dex;
+        if(a.character.getAbilityScore('dex') !== b.character.getAbilityScore('dex'))
+          return a.character.getAbilityScore('dex') - b.character.getAbilityScore('dex');
 
         return a.id - b.id;
-      }).map(character=>character.id);
+      }).map(item=>{return {id: item.id, initiativeRoll: item.roll}});
 
     return dispatch({
       type: types.ALTER_ENCOUNTER_LIST,

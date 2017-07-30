@@ -9,13 +9,14 @@ import '../../styles/initiativeList.less';
 
 //React presentational component
 const CharacterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone}) => {
-  const encounterList = encounter.filter(id=>characters[id]).map(id=>characters[id]).map(character=>{
+  const encounterList = encounter.filter(item=>characters[item.id]).map(item=>{return {...item, character: characters[item.id]}}).map(item=>{
     return (<CharacterListItem
-      key={character.id}
-      character={character}
-      current={currentTurn === character.id}
-      selected={currentSelected === character.id}
-      onClick={()=>selectSomeone(character.id)}
+      key={item.id}
+      character={item.character}
+      initiativeRoll={item.initiativeRoll}
+      current={currentTurn === item.id}
+      selected={currentSelected === item.id}
+      onClick={()=>selectSomeone(item.id)}
     />);
   });
 
@@ -30,7 +31,10 @@ const CharacterList = ({characters, encounter, currentTurn, currentSelected, sel
 };
 
 CharacterList.propTypes = {
-  encounter: PropTypes.arrayOf(PropTypes.string).isRequired,
+  encounter: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    initiativeRoll: PropTypes.number.isRequired
+  })).isRequired,
   currentTurn: PropTypes.string.isRequired,
   currentSelected: PropTypes.string,
   selectSomeone: PropTypes.func.isRequired,

@@ -28,7 +28,7 @@ const CharacterDetailsPane = ({character, close, edit, mode, save}) => {
 
   if(mode === 'editing') {
     const trySave = ()=>{
-      console.log("Trying to save")
+      save(character);
     }
     return (
       <div className="SelectedCharacterPane">

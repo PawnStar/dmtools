@@ -17,6 +17,11 @@ const reducer = (state = defaultState, action) => {
         selectedCharacter: action.id,
         mode: 'editing'
       }
+    case types.SAVE_CHARACTER:
+      return {
+        mode: 'viewing',
+        selectedCharacter: action.character.id
+      }
     default:
       return state;
   }
