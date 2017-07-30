@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {createCharacter, progressTurn, addToEncounter} from '../../actions';
+import {createCharacter} from '../../actions';
 
 //React presentational component
 const DebugButtons = ({
@@ -10,7 +10,6 @@ const DebugButtons = ({
 }) => (
   <div>
     <button onClick={addCharacter}>Add Character</button>
-    <button onClick={moveTurn}>Progress Turn</button>
   </div>
 );
 
@@ -123,11 +122,6 @@ const mapDispatchToProps = dispatch => {
         languages: [],
         exhaustionLevel: 0
       }));
-      dispatch(addToEncounter(res.character.id, d(20)));
-    },
-    moveTurn: (ev)=>{
-      ev.preventDefault();
-      dispatch(progressTurn());
     }
   };
 };
