@@ -3,13 +3,13 @@ import { combineReducers } from 'redux';
 
 import encounter from './encounter';
 import characters from './characters';
-import selectedCharacter from './selectedCharacter';
+import characterPane from './characterPane';
 import saveStatus from './saveStatus';
 
 const rootReducer = combineReducers({
   characters,
   encounter,
-  selectedCharacter,
+  characterPane,
   saveStatus,
   routing
 });

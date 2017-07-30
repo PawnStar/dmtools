@@ -109,14 +109,21 @@ const mapDispatchToProps = dispatch => {
       };
 
       const res = dispatch(createCharacter({
-        initiative: 2 + abilityScores.dex + d(20),
         name: selectName(),
         stats: stats,
-        savingThrows: abilityScores,
+        savingThrows: {},
+        proficiency: d(4),
+        skills: {},
         armorClass: abilityScores.dex + 11,
-        passivePerception: abilityScores.wis + 10
+        walkingSpeed: 30,
+        maxHP: 40,
+        curHP: 20,
+        spellStat: 'wis',
+        conditions: [],
+        languages: [],
+        exhaustionLevel: 0
       }));
-      dispatch(addToEncounter(res.character.id));
+      dispatch(addToEncounter(res.character.id, d(20)));
     },
     moveTurn: (ev)=>{
       ev.preventDefault();

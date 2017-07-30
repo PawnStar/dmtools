@@ -8,47 +8,28 @@ import { selectCharacter } from '../../actions';
 import '../../styles/initiativeList.less';
 
 //React presentational component
-const CharacterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone}) => {
-  const encounterList = encounter.filter(id=>characters[id]).map(id=>characters[id]).map(character=>{
-    return (<CharacterListItem
-      key={character.id}
-      character={character}
-      current={currentTurn === character.id}
-      selected={currentSelected === character.id}
-      onClick={()=>selectSomeone(character.id)}
-    />);
-  });
-
+const CharacterList = () => {
   return (
-    <div className="InitiativeList">
-      <div className="InitiativeListControls">
-        <Debug />
-      </div>
-      {encounterList}
+    <div className="CharacterBrowserPane">
+      <p>
+        This will be where all your character templates are, but right
+        now it only adds them randomly.
+      </p>
+      <p>
+        To test out the (limited) functionality I&#39;ve put in so far,
+        click the &ldquo;Add Character&rdquo; button a few times, followed by the
+        &ldquo;Progress Turn&rdquo; button to move through the round.
+      </p>
+      <Debug/>
     </div>
   );
-};
-
-CharacterList.propTypes = {
-  encounter: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentTurn: PropTypes.string.isRequired,
-  currentSelected: PropTypes.string,
-  selectSomeone: PropTypes.func.isRequired,
-  characters: PropTypes.objectOf(PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    stats: PropTypes.objectOf(PropTypes.number),
-    savingThrows: PropTypes.objectOf(PropTypes.number),
-    armorClass: PropTypes.number,
-    initiative: PropTypes.number
-  })).isRequired
 };
 
 //Redux wrapper
 const mapStateToProps = state => {
   return {
     characters: state.characters,
-    currentSelected: state.selectedCharacter,
+    currentSelected: state.characterPane.selectedCharacter,
     currentTurn: state.encounter.current,
     encounter: state.encounter.list,
   };
@@ -60,9 +41,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const WrappedCharacterList = connect(
+const Wrapped = connect(
   mapStateToProps,
   mapDispatchToProps
 )(CharacterList);
 
-export default WrappedCharacterList;
+export default CharacterList;
