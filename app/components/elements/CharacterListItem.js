@@ -21,8 +21,8 @@ const CharacterListItem = ({character, current, selected, onClick}) => {
       <span className="CharacterListInit">{character.initiative}</span>
       <span className="CharacterListName">{character.name}</span>
       <div className="CharacterListStats">
-        <Icon icon="shield">{character.armorClass}</Icon>
-        <Icon icon="eye">{character.passivePerception}</Icon>
+        <Icon icon="shield" className="CharacterListStat">{character.armorClass}</Icon>
+        <Icon icon="eye" className="CharacterListStat">{character.passivePerception}</Icon>
       </div>
     </div>
   );
