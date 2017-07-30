@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Icon from './Icon';
-import {createCharacter, progressTurn, addToEncounter} from '../../actions';
+import {progressTurn} from '../../actions';
 
 //React presentational component
 const EncounterControls = ({

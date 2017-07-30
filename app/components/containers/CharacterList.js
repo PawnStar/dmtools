@@ -2,42 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import CharacterListItem from '../elements/CharacterListItem';
+import CharacterTile from '../elements/CharacterTile';
 import Debug from '../elements/Debug';
-import { selectCharacter } from '../../actions';
-import '../../styles/initiativeList.less';
+import { selectCharacter, createCharacter, addToEncounter } from '../../actions';
+import '../../styles/characterList.less';
 
 //React presentational component
-const CharacterList = () => {
+const CharacterList = ({characters, openNew, addCharacter, inEncounter, selected}) => {
   return (
     <div className="CharacterBrowserPane">
-      <p>
-        This will be where all your character templates are, but right
-        now it only adds them randomly.
-      </p>
-      <p>
-        To test out the (limited) functionality I&#39;ve put in so far,
-        click the &ldquo;Add Character&rdquo; button a few times, followed by the
-        &ldquo;Progress Turn&rdquo; button to move through the round.
-      </p>
       <Debug/>
+      <div className="CharacterTiles">
+        {
+          characters.map(character=>
+              <CharacterTile
+                key={character.id}
+                character={character}
+                addCharacter={addCharacter}
+                inEncounter={inEncounter(character.id)}
+                selected={selected(character.id)}
+              />
+          )
+        }
+      </div>
     </div>
   );
 };
 
+CharacterList.propTypes = {
+  characters: PropTypes.array.isRequired,
+  inEncounter: PropTypes.func.isRequired,
+  selected: PropTypes.func.isRequired,
+  openNew: PropTypes.func,
+  addCharacter: PropTypes.func.isRequired
+}
+
 //Redux wrapper
 const mapStateToProps = state => {
   return {
-    characters: state.characters,
-    currentSelected: state.characterPane.selectedCharacter,
-    currentTurn: state.encounter.current,
-    encounter: state.encounter.list,
+    characters: (Object.keys(state.characters) || []).map(id=>state.characters[id]),
+    inEncounter: (id)=>state.encounter.list.reduce((f, c)=>f || c.id === id, false),
+    selected: (id)=>state.characterPane.selectedCharacter === id
   };
 };
 
+const d = (n)=>Math.floor(Math.random() * n) + 1;
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectSomeone: (id)=>dispatch(selectCharacter(id))
+    addCharacter: (id) => dispatch(addToEncounter(id, d(20))),
+    openNew: (id)=>dispatch(selectCharacter(id))
   };
 };
 
@@ -46,4 +60,4 @@ const Wrapped = connect(
   mapDispatchToProps
 )(CharacterList);
 
-export default CharacterList;
+export default Wrapped;
