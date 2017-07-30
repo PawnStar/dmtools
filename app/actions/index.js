@@ -60,3 +60,9 @@ export function selectCharacter(id) {
     id
   };
 }
+
+export function saveComplete() {
+  return {
+    type: types.SAVE_COMPLETE
+  }
+}
