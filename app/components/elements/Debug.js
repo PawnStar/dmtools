@@ -8,7 +8,7 @@ const DebugButtons = ({
   addCharacter
 }) => (
   <div>
-    <button onClick={addCharacter}>Add Character</button>
+    <button onClick={addCharacter}>Add Random Character</button>
   </div>
 );
 

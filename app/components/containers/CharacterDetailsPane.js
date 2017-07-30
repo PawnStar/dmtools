@@ -7,44 +7,23 @@ import SelectedCharacterDetails from '../elements/SelectedCharacterDetails';
 
 import Icon from '../elements/Icon';
 
-const CharacterDetailsPane = ({character, initiativeRoll, close, edit, remove, mode, save}) => {
+const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
   const root = window.__webpack_public_path__;
 
   //TODO: A better empty state (CUUUTE)
   if(!character)
     return <div className="SelectedCharacterPane">No character selected</div>
 
-  if(mode === 'viewing')
-    return (
-      <div className="SelectedCharacterPane">
-        <div className="CharacterPaneMenu">
-          <a href="#" title="Edit" onClick={(ev)=>{ev.preventDefault(); edit(character.id);}}><Icon icon="pencil"/></a>
-          <a href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); remove(character.id);}}><Icon icon="trash-o"/></a>
-          <a href="#" title="Close details" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="close"/></a>
-        </div>
-        <SelectedCharacterDetails character={{...character, initiativeRoll}} />
+  return (
+    <div className="SelectedCharacterPane">
+      <div className="CharacterPaneMenu">
+        <Link to={root + 'edit/' + character.id}><Icon icon="pencil"/></Link>
+        <a href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); remove(character.id);}}><Icon icon="trash-o"/></a>
+        <a href="#" title="Close details" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="close"/></a>
       </div>
-    )
-
-
-  if(mode === 'editing') {
-    const trySave = ()=>{
-      save(character);
-    }
-    return (
-      <div className="SelectedCharacterPane">
-        <div className="CharacterPaneMenu">
-          <a href="#" title="Save" onClick={(ev)=>{ev.preventDefault(); trySave();}}><Icon icon="floppy-o"/></a>
-          <a href="#" title="Close details" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="close"/></a>
-        </div>
-        <p>
-          Editing comes later
-        </p>
-      </div>
-    )
-  }
-
-  return null;
+      <SelectedCharacterDetails character={{...character, initiativeRoll}} />
+    </div>
+  )
 };
 
 CharacterDetailsPane.propTypes = {
@@ -58,10 +37,7 @@ CharacterDetailsPane.propTypes = {
   }),
   initiativeRoll: PropTypes.number,
   close: PropTypes.func.isRequired,
-  remove: PropTypes.func.isRequired,
-  edit: PropTypes.func.isRequired,
-  mode: PropTypes.string.isRequired,
-  save: PropTypes.func.isRequired
+  remove: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
@@ -75,17 +51,14 @@ const mapStateToProps = state => {
 
   return {
     character: state.characters[state.characterPane.selectedCharacter],
-    initiativeRoll: currentInitiative,
-    mode: state.characterPane.mode
+    initiativeRoll: currentInitiative
   };
 };
 
 const mapDispatchToProps = dispatch=> {
   return {
     close: ()=>dispatch(selectCharacter('')),
-    edit: (id)=>dispatch(editCharacter(id)),
-    remove: (id)=>dispatch(removeCharacterFromEncounter(id)),
-    save: (character)=>dispatch(saveCharacter(character))
+    remove: (id)=>dispatch(removeCharacterFromEncounter(id))
   };
 };
 

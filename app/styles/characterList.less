@@ -34,7 +34,43 @@
 				background:lightblue;
 				text-decoration: none;
 				text-align:center;
+
+				&.Disabled{
+					background:gray;
+				}
 			}
+
+			.EditCharacter{
+				position:absolute;
+				bottom:0;
+				right:0;
+				height:50%;
+				color:black;
+				background:white;
+				padding-right:2px;
+			}
+		}
+	}
+
+	.NewCharacterButton{
+		display:block;
+		position:absolute;
+		width:60px;
+		height:60px;
+		background:black;
+		bottom:30px;
+		right:30px;
+		border-radius:30px;
+
+		&:after{
+			color:white;
+			text-decoration:none;
+			position:absolute;
+			content:'+';
+			font-size:44px;
+			font-weight:bold;
+			top:5px;
+			left:17px;
 		}
 	}
 }

@@ -4,11 +4,14 @@ import {connect} from 'react-redux';
 
 import CharacterTile from '../elements/CharacterTile';
 import Debug from '../elements/Debug';
+import { Link } from 'react-router-dom';
 import { selectCharacter, createCharacter, addToEncounter } from '../../actions';
 import '../../styles/characterList.less';
 
 //React presentational component
 const CharacterList = ({characters, openNew, addCharacter, inEncounter, selected}) => {
+  const root = window.__webpack_public_path__;
+
   return (
     <div className="CharacterBrowserPane">
       <Debug/>
@@ -25,6 +28,7 @@ const CharacterList = ({characters, openNew, addCharacter, inEncounter, selected
           )
         }
       </div>
+      <Link className="NewCharacterButton" to={root + 'edit/'}/>
     </div>
   );
 };
