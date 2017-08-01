@@ -1,6 +1,29 @@
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import url('https://fonts.googleapis.com/css?family=Lato:700,900|Open+Sans:400,400i|Spectral:500,500i');
+
+@import './glyphicons.less';
 
 html, body{
   padding:0;
   margin:0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Rotating{
+  padding-top:2px;
+  animation: spin 1s infinite linear;
+  position: relative;
+}
+
+.AfterIcon{
+  margin-left:4px;
+}
+
+.Rotating + .AfterIcon{
+  position:relative;
+  top:-2px;
+}
+
+@keyframes spin{
+  from {transform: rotate(0deg)}
+  to {transform: rotate(180deg)}
 }

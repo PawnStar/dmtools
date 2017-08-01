@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Character from '../../helpers/character';
 
+import '../../styles/selectedCharacter.less';
+
 const SelectedCharacterDetails = ({character}) => {
   const char = new Character(character);
 
@@ -11,26 +13,21 @@ const SelectedCharacterDetails = ({character}) => {
       <p>
         <strong>Initiative:</strong>
         {character.initiativeRoll + char.getAbilityScore('dex')} ({character.initiativeRoll} roll  + {char.getAbilityScore('dex')} dex)
-      </p>
-      <p>
+        <br/>{/*Forgive me father for I have sinned*/}
         <strong>HP:</strong>
         {character.curHP}/{character.maxHP}
-      </p>
-      <p>
+        <br/>
         <strong>AC:</strong>
         {character.armorClass}
-      </p>
-      <p>
+        <br/>
         <strong>Speed:</strong>
         {character.walkingSpeed}
       </p>
-      <hr/>
       <table style={{width: '100%'}}>
         <thead>
           <tr>
             <th>Name</th>
             <th>Stat</th>
-            <th>Ability</th>
             <th>Saving Throw</th>
           </tr>
         </thead>
@@ -41,7 +38,6 @@ const SelectedCharacterDetails = ({character}) => {
                 <tr key={stat}>
                   <th>{stat}</th>
                   <td>{character.stats[stat]}</td>
-                  <td>{char.getAbilityScore(stat)}</td>
                   <td>{char.getSavingThrow(stat)}</td>
                 </tr>
               );

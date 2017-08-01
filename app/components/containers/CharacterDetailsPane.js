@@ -18,8 +18,8 @@ const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
     <div className="SelectedCharacterPane">
       <div className="CharacterPaneMenu">
         <Link to={root + 'edit/' + character.id}><Icon icon="pencil"/></Link>
-        <a href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); remove(character.id);}}><Icon icon="trash-o"/></a>
-        <a href="#" title="Close details" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="close"/></a>
+        <a href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); remove(character.id);}}><Icon icon="trash"/></a>
+        <a href="#" title="Close details" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="remove"/></a>
       </div>
       <SelectedCharacterDetails character={{...character, initiativeRoll}} />
     </div>

@@ -24,8 +24,8 @@ const CharacterListItem = ({character, initiativeRoll, current, selected, select
       <span className="CharacterListInit">{initiativeRoll + char.getAbilityScore('dex')}</span>
       <span className="CharacterListName">{character.name}</span>
       <div className="CharacterListStats">
-        <Icon icon="shield" className="CharacterListStat">{character.armorClass}</Icon>
-        <Icon icon="eye" className="CharacterListStat">{10 + char.getAbilityScore('perception')}</Icon>
+        <Icon icon="asterisk" className="CharacterListStat">{character.armorClass}</Icon>
+        <Icon icon="eye-open" className="CharacterListStat">{10 + char.getAbilityScore('perception')}</Icon>
       </div>
       <a className="CharacterListRemove" href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); removeCharacter();}}>X</a>
     </div>

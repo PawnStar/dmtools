@@ -6,9 +6,9 @@ import Icon from './Icon';
 const CharacterTile = ({character, addCharacter, inEncounter, selected}) => (
   <div className={'CharacterTile' + (selected ? ' CharacterTileSelected' : '')}>
     <div>{character.name}</div>
-    {!inEncounter ?
-      <a className="AddToEncounter" href="#" onClick={(ev)=>{ev.preventDefault(); addCharacter(character.id); }}>+</a>
-    : <a className="AddToEncounter Disabled" href="#" onClick={(ev)=>{ev.preventDefault(); }}>+</a> }
+    <a className={'AddToEncounter' + (inEncounter?' Disabled':'')} href="#" onClick={inEncounter?()=>{}:(ev)=>{ev.preventDefault(); addCharacter(character.id); }}>
+      <Icon icon="plus"/>
+    </a>
     <Link className="EditCharacter" to={root + 'edit/' + character.id}><Icon icon="pencil"/></Link>
   </div>
 );
