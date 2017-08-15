@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import CharacterListItem from '../elements/CharacterListItem';
-import EncounterControls from '../elements/EncounterControls';
+import CharacterListItem from './CharacterListItem';
+import EncounterControls from './EncounterControls';
 import { selectCharacter, removeCharacterFromEncounter } from '../../actions';
-import '../../styles/initiativeList.less';
 
 //React presentational component
 const EncounterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone, removeSomeone}) => {

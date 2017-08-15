@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import Icon from './Icon';
+import Icon from '../Icon';
 
 const SaveStatusIndicator = ({saved}) => {
   if(saved === 'saved')

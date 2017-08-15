@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
 import {selectCharacter, editCharacter, saveCharacter, removeCharacterFromEncounter} from '../../actions';
-import SelectedCharacterDetails from '../elements/SelectedCharacterDetails';
+import SelectedCharacterDetails from './SelectedCharacterDetails';
 
-import Icon from '../elements/Icon';
+import Link from '../common/Link';
+import Icon from '../common/Icon';
 
 const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
   const root = window.__webpack_public_path__;
@@ -17,7 +17,7 @@ const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
   return (
     <div className="SelectedCharacterPane">
       <div className="CharacterPaneMenu">
-        <Link to={root + 'edit/' + character.id}><Icon icon="pencil"/></Link>
+        <Link click={root + 'edit/' + character.id}><Icon icon="pencil"/></Link>
         <a href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); remove(character.id);}}><Icon icon="trash"/></a>
         <a href="#" title="Close details" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="remove"/></a>
       </div>

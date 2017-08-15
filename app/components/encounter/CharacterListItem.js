@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Icon from './Icon';
+import Icon from '../common/Icon';
 import profileImage from '../../images/user.png';
 import Character from '../../helpers/character';
 

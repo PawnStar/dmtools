@@ -10,7 +10,7 @@ html, body{
 
 .Rotating{
   padding-top:2px;
-  animation: spin 1s infinite linear;
+  animation: spin 2s infinite linear;
   position: relative;
 }
 
@@ -20,10 +20,10 @@ html, body{
 
 .Rotating + .AfterIcon{
   position:relative;
-  top:-2px;
+  top:-1px;
 }
 
 @keyframes spin{
   from {transform: rotate(0deg)}
-  to {transform: rotate(180deg)}
+  to {transform: rotate(360deg)}
 }

@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import CharacterTile from '../elements/CharacterTile';
-import Debug from '../elements/Debug';
-import { Link } from 'react-router-dom';
-import { selectCharacter, createCharacter, addToEncounter } from '../../actions';
+import CharacterTile from './CharacterTile';
+import Debug from '../common/Debug';
+import Link from '../common/Link';
+import { selectCharacter as selChar, createCharacter, addToEncounter } from '../../actions';
 import '../../styles/characterList.less';
 
 //React presentational component
-const CharacterList = ({characters, openNew, addCharacter, inEncounter, selected}) => {
+const CharacterList = ({characters, addCharacter, inEncounter, selected, selectCharacter}) => {
   const root = window.__webpack_public_path__;
 
   return (
@@ -22,13 +22,14 @@ const CharacterList = ({characters, openNew, addCharacter, inEncounter, selected
                 key={character.id}
                 character={character}
                 addCharacter={addCharacter}
+                selectCharacter={()=>{selectCharacter(character.id)}}
                 inEncounter={inEncounter(character.id)}
                 selected={selected(character.id)}
               />
           )
         }
       </div>
-      <Link className="NewCharacterButton" to={root + 'edit/'}/>
+      <Link className="NewCharacterButton" click="edit/"/>
     </div>
   );
 };
@@ -38,6 +39,7 @@ CharacterList.propTypes = {
   inEncounter: PropTypes.func.isRequired,
   selected: PropTypes.func.isRequired,
   openNew: PropTypes.func,
+  selectCharacter: PropTypes.func.isRequired,
   addCharacter: PropTypes.func.isRequired
 }
 
@@ -55,7 +57,7 @@ const d = (n)=>Math.floor(Math.random() * n) + 1;
 const mapDispatchToProps = (dispatch) => {
   return {
     addCharacter: (id) => dispatch(addToEncounter(id, d(20))),
-    openNew: (id)=>dispatch(selectCharacter(id))
+    selectCharacter: (id) => dispatch(selChar(id))
   };
 };
 
