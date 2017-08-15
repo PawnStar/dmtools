@@ -8,8 +8,6 @@ import Link from '../common/Link';
 import Icon from '../common/Icon';
 
 const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
-  const root = window.__webpack_public_path__;
-
   //TODO: A better empty state (CUUUTE)
   if(!character)
     return <div className="SelectedCharacterPane">No character selected</div>
@@ -17,9 +15,9 @@ const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
   return (
     <div className="SelectedCharacterPane">
       <div className="CharacterPaneMenu">
-        <Link click={root + 'edit/' + character.id}><Icon icon="pencil"/></Link>
-        <a href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); remove(character.id);}}><Icon icon="trash"/></a>
-        <a href="#" title="Close details" onClick={(ev)=>{ev.preventDefault(); close();}}><Icon icon="remove"/></a>
+        <Link title="Edit this character" click={'edit/' + character.id}><Icon icon="pencil"/></Link>
+        <Link title="Remove from encounter" click={()=>{remove(character.id)}}><Icon icon="trash"/></Link>
+        <Link title="Close details" click={()=>{close()}}><Icon icon="remove"/></Link>
       </div>
       <SelectedCharacterDetails character={{...character, initiativeRoll}} />
     </div>

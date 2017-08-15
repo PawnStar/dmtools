@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import CharacterTile from './CharacterTile';
-import Debug from '../common/Debug';
-import Link from '../common/Link';
-import { selectCharacter as selChar, createCharacter, addToEncounter } from '../../actions';
-import '../../styles/characterList.less';
+import Debug from '../../common/Debug';
+import Link from '../../common/Link';
+import { selectCharacter as selChar, createCharacter, addToEncounter } from '../../../actions';
+import '../../../styles/characterList.less';
 
 //React presentational component
 const CharacterList = ({characters, addCharacter, inEncounter, selected, selectCharacter}) => {

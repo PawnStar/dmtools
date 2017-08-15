@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from '../common/Link';
-import Icon from '../common/Icon';
+import Link from '../../common/Link';
+import Icon from '../../common/Icon';
 
 const CharacterTile = ({character, addCharacter, inEncounter, selected, selectCharacter}) => {
   return (

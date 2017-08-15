@@ -7,7 +7,7 @@ import Icon from '../Icon';
 const SaveStatusIndicator = ({saved}) => {
   if(saved === 'saved')
     return <Icon icon="check" className="SaveIcon">Saved</Icon>;
-  return <Icon icon="refresh" rotate="true" className="SaveIcon">Saving</Icon>;
+  return <Icon icon="refresh" rotate className="SaveIcon">Saving</Icon>;
 };
 
 SaveStatusIndicator.propTypes = {

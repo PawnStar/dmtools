@@ -6,14 +6,15 @@ const Link = ({
   style,
   click,
   children,
-  className
+  className,
+  title
 }) => {
   const root = window.__webpack_public_path__;
 
   if(typeof click === 'string')
-    return <ReactLink className={className} style={style} to={root + click}>{children}</ReactLink>
+    return <ReactLink title={title} className={className} style={style} to={root + click}>{children}</ReactLink>
 
-  return (<a className={className} href="#" style={style} onClick={(ev)=>{
+  return (<a title={title} className={className} href="#" style={style} onClick={(ev)=>{
     if(ev) ev.preventDefault();
     if(typeof click === 'function')
       click();
@@ -28,7 +29,8 @@ Link.propTypes = {
     PropTypes.func
   ]),
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Link;
