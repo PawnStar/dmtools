@@ -29,7 +29,7 @@ const CharacterList = ({characters, addCharacter, inEncounter, selected, selectC
           )
         }
       </div>
-      <Link className="NewCharacterButton" click="edit/"/>
+      <Link className="NewCharacterButton" click="characters/add"/>
     </div>
   );
 };
