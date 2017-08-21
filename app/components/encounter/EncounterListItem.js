@@ -5,7 +5,7 @@ import Icon from '../common/Icon';
 import profileImage from '../../images/user.png';
 import Character from '../../helpers/character';
 
-const CharacterListItem = ({character, initiativeRoll, current, selected, selectCharacter, removeCharacter}) => {
+const EncounterListITem = ({character, initiativeRoll, current, selected, selectCharacter, removeCharacter}) => {
   const styleClass = (() => {
     if(current && selected)
       return 'InitiativeListCharacter CurrentCharacter SelectedCharacter';
@@ -27,12 +27,12 @@ const CharacterListItem = ({character, initiativeRoll, current, selected, select
         <Icon icon="asterisk" className="CharacterListStat">{character.armorClass}</Icon>
         <Icon icon="eye-open" className="CharacterListStat">{10 + char.getAbilityScore('perception')}</Icon>
       </div>
-      <a className="CharacterListRemove" href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); removeCharacter();}}>X</a>
+      <a className="CharacterListRemove" href="#" title="Remove from encounter" onClick={(ev)=>{ev.preventDefault(); ev.stopPropagation(); removeCharacter();}}>X</a>
     </div>
   );
 };
 
-CharacterListItem.propTypes = {
+EncounterListITem.propTypes = {
   character: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
@@ -48,4 +48,4 @@ CharacterListItem.propTypes = {
   removeCharacter: PropTypes.func.isRequired
 };
 
-export default CharacterListItem;
+export default EncounterListITem;

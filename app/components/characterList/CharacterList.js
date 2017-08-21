@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-
 import Link from '../common/Link';
+
 import CharacterListItem from './CharacterListItem';
 
 //React presentational component
@@ -11,15 +11,14 @@ const CharacterList = ({characters, inEncounter, selected}) => {
     <div className="CharacterList">
       {
         characters.map(character=>
-          <Link key={character.id} click={'characters/' + character.id}>
-            <CharacterListItem
-              character={character}
-              inEncounter={inEncounter(character.id)}
-              selected={selected(character.id)}
-            />
-          </Link>
+          <CharacterListItem
+            character={character}
+            inEncounter={inEncounter(character.id)}
+            selected={selected(character.id)}
+          />
         )
       }
+      <Link className="NewCharacterButton" click="characters/add"/>
     </div>
   );
 };

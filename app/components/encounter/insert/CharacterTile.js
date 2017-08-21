@@ -10,7 +10,6 @@ const CharacterTile = ({character, addCharacter, inEncounter, selected, selectCh
       <a className={'AddToEncounter' + (inEncounter?' Disabled':'')} href="#" onClick={inEncounter?()=>{}:(ev)=>{ev.preventDefault(); addCharacter(character.id); }}>
         <Icon icon="plus"/>
       </a>
-      <Link className="EditCharacter" click={'edit/' + character.id}><Icon icon="pencil"/></Link>
     </div>
   );
 };

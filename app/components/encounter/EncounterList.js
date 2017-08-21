@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import CharacterListItem from './CharacterListItem';
+import EncounterListItem from './EncounterListItem';
 import EncounterControls from './EncounterControls';
 import { selectCharacter, removeCharacterFromEncounter } from '../../actions';
 
 //React presentational component
 const EncounterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone, removeSomeone}) => {
   const encounterList = encounter.filter(item=>characters[item.id]).map(item=>{return {...item, character: characters[item.id]}}).map(item=>{
-    return (<CharacterListItem
+    return (<EncounterListItem
       key={item.id}
       character={item.character}
       initiativeRoll={item.initiativeRoll}
