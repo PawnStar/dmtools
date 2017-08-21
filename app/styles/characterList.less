@@ -1,25 +1,13 @@
 .CharacterBrowserPane{
-	position:absolute;
-	top:0;
-	bottom:0;
 	background:lightgray;
 
 	.CharacterTiles {
-		display:block;
-		margin:0;
-		padding:0;
-		position:absolute;
-		left:0;
-		right:0;
-		top:40px;
-		bottom:0px;
-		overflow:auto;
 
 		.CharacterTile{
 			position:relative;
 			margin:1%;
-			width:48%;
-			min-width:200px;
+			width:23%;
+			min-width:120px;
 			color:black;
 			display:inline-block;
 			height: 40px;
@@ -34,6 +22,21 @@
 				background:lightblue;
 				text-decoration: none;
 				text-align:center;
+				color:black;
+
+				&.Disabled{
+					background:gray;
+				}
+			}
+
+			.EditCharacter{
+				position:absolute;
+				bottom:0;
+				right:0;
+				height:50%;
+				color:black;
+				background:white;
+				padding-right:2px;
 			}
 		}
 	}

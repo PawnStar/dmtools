@@ -1,0 +1,114 @@
+.InitiativeList {
+	display:block;
+	margin:0;
+	padding:0;
+	background:lightgray;
+	position:absolute;
+	top:40px;
+	bottom:0px;
+	width:250px;
+	overflow:auto;
+
+	.InitiativeListCharacter{
+		height:45px;
+		position:relative;
+		border-bottom: solid 1px gray;
+
+		&.SelectedCharacter{
+			background:white;
+			border-right:none;
+		}
+
+		&.CurrentCharacter{
+			background:#c2ffc3;
+			&.SelectedCharacter{
+				background:linear-gradient(90deg, #c2ffc3 80%, white);
+			}
+			&::before{
+				content: '>';
+				position:absolute;
+				top:14px;
+				left:5px;
+			}
+		}
+
+		img.CharacterListImage{
+			position:absolute;
+			top:8px;
+			left:20px;
+			background:gray;
+			border:solid 1px black;
+			width:30px;
+			height:30px;
+			border-radius: 15px;
+			overflow:hidden;
+		}
+
+		.CharacterListInit{
+			font-family: 'Open Sans', sans-serif;
+			position:absolute;
+			top:25px;
+			left:38px;
+			width:18px;
+			font-size: 12px;
+			text-align:center;
+			color:white;
+			z-index:2;
+
+			&:after{
+				display:block;
+				width:18px;
+				height:18px;
+				background:red;
+				border-radius: 9px;
+				position:absolute;
+				top:-1px;
+				left:0px;
+				z-index:-1;
+				content:'';
+			}
+		}
+
+		.CharacterListName{
+			position:absolute;
+			top:8px;
+			left:65px;
+		}
+
+		.CharacterListStats{
+			position:absolute;
+			top:0;
+			right:10px;
+			width:100px;
+
+			& > .CharacterListStat{
+				display:inline-block;
+				width:50%;
+			}
+		}
+
+		.CharacterListAC{
+			position:absolute;
+			top:8px;
+			right:10px;
+		}
+
+		.CharacterListRemove{
+			text-decoration:none;
+			position:absolute;
+			top:15px;
+			right:10px;
+			color:black;
+		}
+	}
+}
+
+.SelectedCharacterPane {
+  display:inline-block;
+  position:absolute;
+  top:40px;
+  left:250px;
+  right:0;
+  bottom:0;
+  padding:10px;
+}

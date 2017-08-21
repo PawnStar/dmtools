@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import Routes from './router.js';
 
-import DevTools from './containers/DevTools';
+import DevTools from './common/DevTools';
 
 const dev = (()=>{
   if (process.env.NODE_ENV === 'development') return (<DevTools />);

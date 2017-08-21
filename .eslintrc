@@ -123,9 +123,6 @@
         "allowSingleLine": true
       }
     ],                               // http://eslint.org/docs/rules/brace-style
-    "quotes": [
-      1, "single", "avoid-escape"    // http://eslint.org/docs/rules/quotes
-    ],
     "camelcase": [2, {               // http://eslint.org/docs/rules/camelcase
       "properties": "never"
     }],
@@ -156,7 +153,6 @@
       "after": true
     }],
     "space-before-function-paren": [2, "never"], // http://eslint.org/docs/rules/space-before-function-paren
-    "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops
     // React
     "jsx-quotes": [2, "prefer-double"],
     "react/display-name": 0,

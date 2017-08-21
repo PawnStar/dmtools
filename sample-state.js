@@ -66,7 +66,6 @@
   },
 
   characterPane: {
-    mode: 'editing',
     selectedCharacter: id
   }
 
