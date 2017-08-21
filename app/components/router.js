@@ -7,7 +7,6 @@ import Titlebar from './common/titlebar/Titlebar';
 import EncounterInsert from './encounter/insert/CharacterInsertModal';
 import CharacterDetails from './characterList/CharacterDetails';
 import CharacterCreate from './characterList/NewCharacter';
-
 const root = window.__webpack_public_path__;
 
 export default (

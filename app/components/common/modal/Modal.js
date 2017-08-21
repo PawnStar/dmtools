@@ -40,7 +40,6 @@ Modal.propTypes = {
   nav: PropTypes.func
 };
 
-
 //Redux wrapper
 const mapStateToProps = null;
 
