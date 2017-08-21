@@ -9,7 +9,7 @@ const Titlebar = () =>{
     <div className="Titlebar">
         <Link click="">DMTool</Link>
         <Link click="encounter">Encounter</Link>
-        <Link click="characters">Character</Link>
+        <Link click="characters">Characters</Link>
         <Link click="settings">Settings</Link>
         <SaveStatusIndicator/>
     </div>

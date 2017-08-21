@@ -4,37 +4,35 @@ import {connect} from 'react-redux';
 
 import CharacterTile from './CharacterTile';
 import Debug from '../../common/Debug';
-import Link from '../../common/Link';
+import Modal from '../../common/modal/Modal';
 import { selectCharacter as selChar, createCharacter, addToEncounter } from '../../../actions';
 import '../../../styles/characterList.less';
 
 //React presentational component
-const CharacterList = ({characters, addCharacter, inEncounter, selected, selectCharacter}) => {
-  const root = window.__webpack_public_path__;
-
+const CharacterInsertModal = ({characters, addCharacter, inEncounter, selected, selectCharacter}) => {
   return (
-    <div className="CharacterBrowserPane">
-      <Debug/>
-      <div className="CharacterTiles">
-        {
-          characters.map(character=>
-              <CharacterTile
-                key={character.id}
-                character={character}
-                addCharacter={addCharacter}
-                selectCharacter={()=>{selectCharacter(character.id)}}
-                inEncounter={inEncounter(character.id)}
-                selected={selected(character.id)}
-              />
-          )
-        }
+    <Modal close="encounter">
+      <div className="CharacterBrowserPane">
+        <div className="CharacterTiles">
+          {
+            characters.filter(c=>!inEncounter(c.id)).map(character=>
+                <CharacterTile
+                  key={character.id}
+                  character={character}
+                  addCharacter={addCharacter}
+                  selectCharacter={()=>{selectCharacter(character.id)}}
+                  inEncounter={inEncounter(character.id)}
+                  selected={selected(character.id)}
+                />
+            )
+          }
+        </div>
       </div>
-      <Link className="NewCharacterButton" click="characters/add"/>
-    </div>
+    </Modal>
   );
 };
 
-CharacterList.propTypes = {
+CharacterInsertModal.propTypes = {
   characters: PropTypes.array.isRequired,
   inEncounter: PropTypes.func.isRequired,
   selected: PropTypes.func.isRequired,
@@ -64,6 +62,6 @@ const mapDispatchToProps = (dispatch) => {
 const Wrapped = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CharacterList);
+)(CharacterInsertModal);
 
 export default Wrapped;

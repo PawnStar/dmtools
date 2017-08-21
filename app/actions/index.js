@@ -84,7 +84,8 @@ export function removeCharacterFromEncounter(id) {
     if(state.encounter.current === id)
       dispatch(progressTurn())
 
-    dispatch(selectCharacter(''));
+    if(state.characterPane.selectedCharacter === id)
+      dispatch(selectCharacter(''));
 
     return dispatch({
       type: types.ALTER_ENCOUNTER_LIST,

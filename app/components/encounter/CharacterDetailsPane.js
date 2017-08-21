@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {selectCharacter, editCharacter, saveCharacter, removeCharacterFromEncounter} from '../../actions';
-import SelectedCharacterDetails from './SelectedCharacterDetails';
+import Character from '../../helpers/character';
 
 import Link from '../common/Link';
 import Icon from '../common/Icon';
@@ -12,6 +12,8 @@ const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
   if(!character)
     return <div className="SelectedCharacterPane">No character selected</div>
 
+  const char = new Character(character);
+
   return (
     <div className="SelectedCharacterPane">
       <div className="CharacterPaneMenu">
@@ -19,7 +21,44 @@ const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
         <Link title="Remove from encounter" click={()=>{remove(character.id)}}><Icon icon="trash"/></Link>
         <Link title="Close details" click={()=>{close()}}><Icon icon="remove"/></Link>
       </div>
-      <SelectedCharacterDetails character={{...character, initiativeRoll}} />
+      <div>
+        <h2>{character.name}</h2>
+        <p>
+          <strong>Initiative:</strong>
+          {character.initiativeRoll + char.getAbilityScore('dex')} ({character.initiativeRoll} roll  + {char.getAbilityScore('dex')} dex)
+          <br/>{/*Forgive me father for I have sinned*/}
+          <strong>HP:</strong>
+          {character.curHP}/{character.maxHP}
+          <br/>
+          <strong>AC:</strong>
+          {character.armorClass}
+          <br/>
+          <strong>Speed:</strong>
+          {character.walkingSpeed}
+        </p>
+        <table style={{width: '100%', textAlign: 'center'}}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Stat</th>
+              <th>Saving Throw</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              Object.keys(character.stats).map(stat=>{
+                return (
+                  <tr key={stat}>
+                    <th>{stat}</th>
+                    <td>{character.stats[stat]}</td>
+                    <td>{char.getSavingThrow(stat)}</td>
+                  </tr>
+                );
+              })
+            }
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 };
