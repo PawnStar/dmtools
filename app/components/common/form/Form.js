@@ -16,14 +16,16 @@ class Form extends Component {
   }
 
   rebuildEverything(props){
-    // eslint-disable-next-line prefer-const
-    let newState = {};
+    const newState = {};
 
     const formValues = React.Children.map(props.children, child=>{
       if(child.props.name)
         return {
           name: child.props.name,
-          value: child.props.initialValue || ''
+          value: child.props.initialValue ||
+                  (child.type.emptyValue !== undefined)?
+                    child.type.emptyValue:
+                  null
         };
       return null;
     }).filter(v=>v);
@@ -59,6 +61,7 @@ class Form extends Component {
       if(element.props && element.props.name){
         newProps.onChange = value=>{
           const newState = {};
+          console.log(element.props.name + ': ' + value)
           newState[element.props.name] = value;
           this.setState(newState);
         };

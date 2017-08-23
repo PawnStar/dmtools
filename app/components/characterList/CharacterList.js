@@ -12,6 +12,7 @@ const CharacterList = ({characters, inEncounter, selected}) => {
       {
         characters.map(character=>
           <CharacterListItem
+            key={character.id}
             character={character}
             inEncounter={inEncounter(character.id)}
             selected={selected(character.id)}

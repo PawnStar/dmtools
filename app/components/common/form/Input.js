@@ -9,8 +9,6 @@ const Input = ({name, className, label, hidden, onChange, value, placeholder})=>
     <input
       type={hidden?'password':'text'}
       onChange={(ev)=>{
-        if(ev) ev.preventDefault();
-
         if(onChange && typeof onChange === 'function')
           onChange(ev?ev.target.value:'');
       }}
@@ -19,6 +17,8 @@ const Input = ({name, className, label, hidden, onChange, value, placeholder})=>
       name={name}/>
   </div>
 );
+
+Input.emptyValue = '';
 
 Input.propTypes = {
   name: PropTypes.string,
