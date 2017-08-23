@@ -4,11 +4,18 @@ import {connect} from 'react-redux';
 import Modal from '../common/modal/Modal';
 import Character from '../../helpers/character';
 
-
 //React presentational component
 const CharacterDetails = ({match, getCharacter}) => {
   const characterID = match.params.characterID;
   const character = getCharacter(characterID);
+  if(!character)
+    return (
+      <Modal close="characters">
+        <div style={{padding: '20px'}}>
+          <p>Character not found</p>
+        </div>
+      </Modal>
+    );
   const char = new Character(character);
   return (
     <Modal close="characters">
@@ -65,7 +72,7 @@ CharacterDetails.propTypes = {
 const mapStateToProps = state => ({
   getCharacter: id=>state.characters[(Object.keys(state.characters) || []).filter(c=>c===id)[0]]
 });
-const mapDispatchToProps = null;
+const mapDispatchToProps = null
 
 export default connect(
   mapStateToProps,
