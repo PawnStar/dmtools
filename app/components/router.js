@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import EncounterPage from './pages/EncounterPage';
 import CharactersPage from './pages/CharactersPage';
 import Settings from './pages/Settings';
+import Homepage from './pages/Homepage';
 import Titlebar from './common/titlebar/Titlebar';
 import EncounterInsert from './encounter/insert/CharacterInsertModal';
 import CharacterDetails from './characterList/CharacterDetails';
@@ -12,7 +13,7 @@ const root = window.__webpack_public_path__;
 export default (
 	<div>
 		<Titlebar/>
-		<Route exact path={root} component={null} />
+		<Route exact path={root} component={Homepage} />
 		<Route path={root + 'encounter'} component={EncounterPage} />
 		<Route path={root + 'encounter/insert'} component={EncounterInsert} />
 		<Route path={root + 'characters'} component={CharactersPage} />

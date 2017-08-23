@@ -61,7 +61,6 @@ class Form extends Component {
       if(element.props && element.props.name){
         newProps.onChange = value=>{
           const newState = {};
-          console.log(element.props.name + ': ' + value)
           newState[element.props.name] = value;
           this.setState(newState);
         };

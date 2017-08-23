@@ -82,9 +82,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteChar: (id)=>{
     dispatch(deleteCharacter(id));
-    dispatch(push('../characters'))
+    dispatch(push('../characters'));
   }
-})
+});
 
 export default connect(
   mapStateToProps,
