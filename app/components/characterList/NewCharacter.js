@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 import Modal from '../common/modal/Modal';
 import Form from '../common/form/Form';
-import Input from '../common/form/Input';
+import TextInput from '../common/form/TextInput';
+import NumberInput from '../common/form/NumberInput';
 import Button from '../common/form/Button';
 import Checkbox from '../common/form/Checkbox';
 import {connect} from 'react-redux';
@@ -38,17 +39,17 @@ const NewCharacter = ({create, closeModal}) => {
       <div style={{padding: '20px'}}>
         <h3>New Character</h3>
         <Form setProp={console.log}>
-          <Input label="Name" name="name"/>
-          <Input label="Dexterity" name="stats_dex"/>
-          <Input label="Strength" name="stats_str"/>
-          <Input label="Constitution" name="stats_con"/>
-          <Input label="Wisdom" name="stats_wis"/>
-          <Input label="Intelligence" name="stats_int"/>
-          <Input label="Charisma" name="stats_cha"/>
-          <Input label="Proficiency bonus" name="proficiency"/>
-          <Input label="Armor Class" name="armorClass"/>
-          <Input label="Walking Speed" name="walkingSpeed"/>
-          <Input label="Maximum HP" name="maxHP"/>
+          <TextInput label="Name" name="name"/>
+          <NumberInput label="Dexterity" name="stats_dex"/>
+          <NumberInput label="Strength" name="stats_str"/>
+          <NumberInput label="Constitution" name="stats_con"/>
+          <NumberInput label="Wisdom" name="stats_wis"/>
+          <NumberInput label="Intelligence" name="stats_int"/>
+          <NumberInput label="Charisma" name="stats_cha"/>
+          <NumberInput label="Proficiency bonus" name="proficiency"/>
+          <NumberInput label="Armor Class" name="armorClass"/>
+          <NumberInput label="Walking Speed" name="walkingSpeed"/>
+          <NumberInput label="Maximum HP" name="maxHP"/>
           <Checkbox label="Generic Character" name="generic"/>
           <Button onSubmit={handleForm}>Submit</Button>
         </Form>

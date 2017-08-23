@@ -17,7 +17,7 @@ const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
   return (
     <div className="SelectedCharacterPane">
       <div className="CharacterPaneMenu">
-        <Link title="Edit this character" click={'edit/' + character.id}><Icon icon="pencil"/></Link>
+        <Link title="Edit this character" click={'characters/' + character.id}><Icon icon="pencil"/></Link>
         <Link title="Remove from encounter" click={()=>{remove(character.id);}}><Icon icon="trash"/></Link>
         <Link title="Close details" click={()=>{close();}}><Icon icon="remove"/></Link>
       </div>

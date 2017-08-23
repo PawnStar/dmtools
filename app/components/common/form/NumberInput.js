@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 
 import './input.less';
 
-const Input = ({name, className, number, label, hidden, onChange, value, placeholder})=>(
-  <div className={'Input ' + (className || '')}>
+const NumberInput = ({name, className, label, onChange, value, placeholder})=>(
+  <div className={'NumberInput ' + (className || '')}>
     <label htmlFor={name}>{label || name}</label>
     <input
-      type={hidden?'password':'text'}
+      type={'text'}
       onChange={(ev)=>{
+        let val = ev?parseFloat(ev.target.value):0;
+        if(isNaN(val)) val = 0;
         if(onChange && typeof onChange === 'function')
-          if(number)
-            onChange(ev?parseFloat(ev.target.value):0)
-          else
-            onChange(ev?ev.target.value:'');
+          onChange(val);
       }}
       value={value}
       placeholder={placeholder}
@@ -21,17 +20,17 @@ const Input = ({name, className, number, label, hidden, onChange, value, placeho
   </div>
 );
 
-Input.emptyValue = '';
+NumberInput.emptyValue = 0;
 
-Input.propTypes = {
+NumberInput.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   number: PropTypes.bool,
   hidden: PropTypes.bool,
   placeholder: PropTypes.node,
   className: PropTypes.bool,
-  value: PropTypes.string,
+  value: PropTypes.number,
   onChange: PropTypes.func
 };
 
-export default Input;
+export default NumberInput;
