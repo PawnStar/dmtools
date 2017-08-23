@@ -27,7 +27,7 @@ CharacterList.propTypes = {
   characters: PropTypes.array.isRequired,
   inEncounter: PropTypes.func.isRequired,
   selected: PropTypes.func.isRequired
-}
+};
 
 //Redux wrapper
 const mapStateToProps = state => {

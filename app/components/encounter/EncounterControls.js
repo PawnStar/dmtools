@@ -8,13 +8,12 @@ import Link from '../common/Link';
 //React presentational component
 const EncounterControls = ({
   moveTurn
-}) => {
-  return (
+}) => (
   <div style={{textAlign: 'center'}}>
     <Link style={{textDecoration: 'none', color: 'black'}} click="encounter/insert"><Icon icon="plus"/></Link>
     <Link style={{textDecoration: 'none', color: 'black'}} click={moveTurn}><Icon icon="step-forward"/></Link>
   </div>
-)};
+);
 
 EncounterControls.propTypes = {
   moveTurn: PropTypes.func.isRequired

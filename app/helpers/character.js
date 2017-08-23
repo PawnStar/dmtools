@@ -45,7 +45,7 @@ class Character {
     const timesTrained = char.skills[name].trained || 0;
 
     if(timesTrained === 0 && char.feats.jackOfAll)
-      return getScoreFromStat(stat) + Math.floor(char.proficiency / 2)
+      return getScoreFromStat(stat) + Math.floor(char.proficiency / 2);
 
     return getScoreFromStat(stat) + timesTrained * char.proficiency;
   }
@@ -79,7 +79,7 @@ class Character {
     const proficiency = char.proficiency.bonus;
     const spellMod = this.getStatMod(this.spellStat);
 
-    return char.proficiency.bonus + spellMod;
+    return proficiency + spellMod;
   }
 
   getSpellSaveDC(){
@@ -88,7 +88,7 @@ class Character {
     const proficiency = char.proficiency.bonus;
     const spellMod = this.getStatMod(this.spellStat);
 
-    return 8 + char.proficiency.bonus + spellMod;
+    return 8 + proficiency + spellMod;
   }
 }
 

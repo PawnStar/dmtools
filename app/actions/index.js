@@ -25,7 +25,7 @@ export function addToEncounter(id, initiativeRoll) {
       id, initiativeRoll
     } ]
       .filter(item=>getState().characters[item.id])
-      .map(item=>{return {id: item.id, character: new Character(getState().characters[item.id]), roll: item.initiativeRoll}})
+      .map(item=>({id: item.id, character: new Character(getState().characters[item.id]), roll: item.initiativeRoll}))
       .sort((b,a)=>{
         //TODO: add sort order feature, for manual sorting
         if(a.character.getInitiative(a.roll) !== b.character.getInitiative(b.roll))
@@ -35,7 +35,7 @@ export function addToEncounter(id, initiativeRoll) {
           return a.character.getAbilityScore('dex') - b.character.getAbilityScore('dex');
 
         return a.id - b.id;
-      }).map(item=>{return {id: item.id, initiativeRoll: item.roll}});
+      }).map(item=>({id: item.id, initiativeRoll: item.roll}));
 
     return dispatch({
       type: types.ALTER_ENCOUNTER_LIST,
@@ -56,7 +56,7 @@ export function progressTurn() {
       if(current.id === state.encounter.current)
         return index;
       return found;
-    }, -1)
+    }, -1);
     const nextIndex = (currentIndex + 1 === state.encounter.list.length) ? 0 : (currentIndex + 1);
 
     return dispatch({
@@ -74,7 +74,7 @@ export function removeCharacterFromEncounter(id) {
       if(current.id === id)
         return index;
       return found;
-    }, -1)
+    }, -1);
 
     if(indexOfRemoved < 0)
       return null;
@@ -82,7 +82,7 @@ export function removeCharacterFromEncounter(id) {
     const moddedList = [ ...state.encounter.list.slice(0, indexOfRemoved), ...state.encounter.list.slice(indexOfRemoved + 1)];
 
     if(state.encounter.current === id)
-      dispatch(progressTurn())
+      dispatch(progressTurn());
 
     if(state.characterPane.selectedCharacter === id)
       dispatch(selectCharacter(''));
@@ -90,7 +90,7 @@ export function removeCharacterFromEncounter(id) {
     return dispatch({
       type: types.ALTER_ENCOUNTER_LIST,
       list: moddedList
-    })
+    });
   };
 }
 
@@ -103,7 +103,7 @@ export function selectCharacter(id) {
       return dispatch({
         type: types.SELECT_CHARACTER,
         id
-      })
+      });
     return null;
   };
 }
@@ -117,15 +117,15 @@ export function saveCharacter(character) {
     return dispatch({
       type: types.SAVE_CHARACTER,
       character
-    })
-  }
+    });
+  };
 }
 
 export function editCharacter(id) {
   return {
     type: types.EDIT_CHARACTER,
     id
-  }
+  };
 }
 
 export function saveComplete() {
