@@ -32,13 +32,13 @@ const NewCharacter = ({create, closeModal}) => {
       curHP: data.maxHP
     });
     closeModal();
-  }
+  };
 
   return (
     <Modal close="characters">
       <div style={{padding: '20px'}}>
         <h3>New Character</h3>
-        <Form setProp={console.log}>
+        <Form>
           <TextInput label="Name" name="name"/>
           <NumberInput label="Dexterity" name="stats_dex"/>
           <NumberInput label="Strength" name="stats_str"/>
@@ -61,7 +61,7 @@ const NewCharacter = ({create, closeModal}) => {
 NewCharacter.propTypes = {
   create: PropTypes.func,
   closeModal: PropTypes.func
-}
+};
 
 const mapDispatchToProps = dispatch=>({
   create: character=>dispatch(createCharacter(character)),
