@@ -19,6 +19,17 @@ export function createCharacter(character) {
   };
 }
 
+export function deleteCharacter(id) {
+  return (dispatch, getState) => {
+    dispatch(removeCharacterFromEncounter(id));
+
+    return dispatch({
+      type: types.DELETE_CHARACTER,
+      id
+    })
+  };
+}
+
 export function addToEncounter(id, initiativeRoll) {
   return (dispatch, getState) => {
     const moddedList = [ ...getState().encounter.list, {
