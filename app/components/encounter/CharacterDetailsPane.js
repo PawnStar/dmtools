@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {selectCharacter, editCharacter, saveCharacter, removeCharacterFromEncounter} from '../../actions';
+import {selectCharacter, removeCharacterFromEncounter} from '../../actions';
 import Character from '../../helpers/character';
 
 import Link from '../common/Link';
@@ -10,22 +10,22 @@ import Icon from '../common/Icon';
 const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
   //TODO: A better empty state (CUUUTE)
   if(!character)
-    return <div className="SelectedCharacterPane">No character selected</div>
+    return <div className="SelectedCharacterPane">No character selected</div>;
 
   const char = new Character(character);
 
   return (
     <div className="SelectedCharacterPane">
       <div className="CharacterPaneMenu">
-        <Link title="Edit this character" click={'edit/' + character.id}><Icon icon="pencil"/></Link>
-        <Link title="Remove from encounter" click={()=>{remove(character.id)}}><Icon icon="trash"/></Link>
-        <Link title="Close details" click={()=>{close()}}><Icon icon="remove"/></Link>
+        <Link title="Edit this character" click={'characters/' + character.id}><Icon icon="pencil"/></Link>
+        <Link title="Remove from encounter" click={()=>{remove(character.id);}}><Icon icon="trash"/></Link>
+        <Link title="Close details" click={()=>{close();}}><Icon icon="remove"/></Link>
       </div>
       <div>
         <h2>{character.name}</h2>
         <p>
           <strong>Initiative:</strong>
-          {character.initiativeRoll + char.getAbilityScore('dex')} ({character.initiativeRoll} roll  + {char.getAbilityScore('dex')} dex)
+          {initiativeRoll + char.getAbilityScore('dex')} ({character.initiativeRoll} roll  + {char.getAbilityScore('dex')} dex)
           <br/>{/*Forgive me father for I have sinned*/}
           <strong>HP:</strong>
           {character.curHP}/{character.maxHP}
@@ -60,7 +60,7 @@ const CharacterDetailsPane = ({character, initiativeRoll, close, remove}) => {
         </table>
       </div>
     </div>
-  )
+  );
 };
 
 CharacterDetailsPane.propTypes = {
@@ -82,7 +82,7 @@ const mapStateToProps = state => {
     if(current.id === state.characterPane.selectedCharacter)
       return current;
     return running;
-  }, undefined)
+  }, undefined);
 
   const currentInitiative = currentItem ? currentItem.initiativeRoll : 0;
 

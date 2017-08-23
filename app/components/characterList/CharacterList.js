@@ -12,6 +12,7 @@ const CharacterList = ({characters, inEncounter, selected}) => {
       {
         characters.map(character=>
           <CharacterListItem
+            key={character.id}
             character={character}
             inEncounter={inEncounter(character.id)}
             selected={selected(character.id)}
@@ -27,7 +28,7 @@ CharacterList.propTypes = {
   characters: PropTypes.array.isRequired,
   inEncounter: PropTypes.func.isRequired,
   selected: PropTypes.func.isRequired
-}
+};
 
 //Redux wrapper
 const mapStateToProps = state => {

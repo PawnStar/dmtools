@@ -15,7 +15,7 @@ const currentTurn = (state = defaultState, action) => {
     case types.ALTER_ENCOUNTER_LIST:
       return {
         list: action.list,
-        current: state.current
+        current: action.list.length > 1 ? state.current : ''
       };
     default:
       return state;

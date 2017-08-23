@@ -7,6 +7,10 @@ const addCharacter = (state = {}, action) => {
         ...state,
         [action.character.id]: action.character
       };
+    case types.DELETE_CHARACTER:
+      const newState = {...state};
+      delete newState[action.id];
+      return newState;
     default:
       return state;
   }

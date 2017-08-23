@@ -1,6 +1,6 @@
 {
-  "name": "catpat",
-  "version": "1.0.0",
+  "name": "dmtools",
+  "version": "0.0.0",
   "description": "A boilerplate for playing around with react, redux and react-router with the help of webpack.",
   "main": "index.js",
   "scripts": {

@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import CharacterTile from './CharacterTile';
-import Debug from '../../common/Debug';
 import Modal from '../../common/modal/Modal';
-import { selectCharacter as selChar, createCharacter, addToEncounter } from '../../../actions';
+import { selectCharacter as selChar, addToEncounter } from '../../../actions';
 import '../../../styles/characterList.less';
 
 //React presentational component
@@ -20,7 +19,7 @@ const CharacterInsertModal = ({characters, addCharacter, inEncounter, selected, 
                   key={character.id}
                   character={character}
                   addCharacter={addCharacter}
-                  selectCharacter={()=>{selectCharacter(character.id)}}
+                  selectCharacter={()=>{selectCharacter(character.id);}}
                   inEncounter={inEncounter(character.id)}
                   selected={selected(character.id)}
                 />
@@ -39,16 +38,14 @@ CharacterInsertModal.propTypes = {
   openNew: PropTypes.func,
   selectCharacter: PropTypes.func.isRequired,
   addCharacter: PropTypes.func.isRequired
-}
+};
 
 //Redux wrapper
-const mapStateToProps = state => {
-  return {
-    characters: (Object.keys(state.characters) || []).map(id=>state.characters[id]),
-    inEncounter: (id)=>state.encounter.list.reduce((f, c)=>f || c.id === id, false),
-    selected: (id)=>state.characterPane.selectedCharacter === id
-  };
-};
+const mapStateToProps = state => ({
+  characters: (Object.keys(state.characters) || []).map(id=>state.characters[id]),
+  inEncounter: (id)=>state.encounter.list.reduce((f, c)=>f || c.id === id, false),
+  selected: (id)=>state.characterPane.selectedCharacter === id
+});
 
 const d = (n)=>Math.floor(Math.random() * n) + 1;
 

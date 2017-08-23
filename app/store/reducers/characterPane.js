@@ -3,7 +3,7 @@ import * as types from '../../actions/types';
 const defaultState = {
   mode: 'viewing',
   selectedCharacter: null
-}
+};
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {

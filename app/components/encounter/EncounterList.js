@@ -8,7 +8,7 @@ import { selectCharacter, removeCharacterFromEncounter } from '../../actions';
 
 //React presentational component
 const EncounterList = ({characters, encounter, currentTurn, currentSelected, selectSomeone, removeSomeone}) => {
-  const encounterList = encounter.filter(item=>characters[item.id]).map(item=>{return {...item, character: characters[item.id]}}).map(item=>{
+  const encounterList = encounter.filter(item=>characters[item.id]).map(item=>({...item, character: characters[item.id]})).map(item=>{
     return (<EncounterListItem
       key={item.id}
       character={item.character}
