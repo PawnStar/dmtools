@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import EncounterListItem from './EncounterListItem';
-import EncounterControls from './EncounterControls';
 import { selectCharacter, removeCharacterFromEncounter } from '../../actions';
 
 //React presentational component
@@ -22,9 +21,6 @@ const EncounterList = ({characters, encounter, currentTurn, currentSelected, sel
 
   return (
     <div className="InitiativeList">
-      <div className="InitiativeListControls">
-        <EncounterControls />
-      </div>
       {encounterList}
     </div>
   );

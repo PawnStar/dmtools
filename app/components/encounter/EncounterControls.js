@@ -9,9 +9,11 @@ import Link from '../common/Link';
 const EncounterControls = ({
   moveTurn
 }) => (
-  <div style={{textAlign: 'center'}}>
-    <Link style={{textDecoration: 'none', color: 'black'}} click="encounter/insert"><Icon icon="plus"/></Link>
-    <Link style={{textDecoration: 'none', color: 'black'}} click={moveTurn}><Icon icon="step-forward"/></Link>
+  <div className="EncounterControls">
+    <div style={{textAlign: 'center'}}>
+      <Link style={{textDecoration: 'none', color: 'black'}} click="encounter/insert"><Icon icon="plus"/></Link>
+      <Link style={{textDecoration: 'none', color: 'black'}} click={moveTurn}><Icon icon="step-forward"/></Link>
+    </div>
   </div>
 );
 
